@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.33.2:3306/knowlegebox
+    username: root
+    password: vagrant
+  thymeleaf: 
+    check-template-location: false
+    initialization-mode: always
+server:
+  port: 8080
