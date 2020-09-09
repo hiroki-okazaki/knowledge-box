@@ -3,6 +3,9 @@ package api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,10 +26,12 @@ public class LanguageController {
 //	      @ApiResponse(code = 400, message = "ASPの登録に失敗", response = ResponseContainer.class)
 //	  })
 	@GetMapping()
-	public List<Language> getAll() {
-		
+	public ResponseEntity<Object> getAll() {
+
 		List<Language> resultList = languageService.getAll();
-		
-		return resultList;
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.set("MyResponseHeader", "MyValue");
+		return new ResponseEntity<>(resultList, responseHeaders, HttpStatus.CREATED);
 	}
 }
